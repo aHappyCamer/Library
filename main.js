@@ -43,14 +43,18 @@ function render () {
 
     let json = JSON.stringify(myLibrary);
 
-for(i = 0; i < myLibrary.length; i++){
-    row.innerHTML = `<td>${myLibrary[i].title}</td>
-                    <td>${myLibrary[i].author}</td>
-                    <td>${myLibrary[i].pagesRead}/${myLibrary[i].pagesTotal}</td>
-                    <td>${myLibrary[i].progress}</td>`;
-                    list.appendChild(row);
-}
+    for(i = 0; i < myLibrary.length; i++){
+        row.innerHTML = `<td>${myLibrary[i].title}</td>
+                        <td>${myLibrary[i].author}</td>
+                        <td>${myLibrary[i].pagesRead}/${myLibrary[i].pagesTotal}</td>
+                        <td>${myLibrary[i].progress}</td>
+                        <td><button id="editButton" onclick="editBook()">
+                        <span class="material-icons">create</span></td>
+                        <td><button id="removeButton" onclick="removeBook()">
+                        <span class="material-icons">delete</span></button></td>`;
 
+                        list.appendChild(row);
+    }
 
 }
 

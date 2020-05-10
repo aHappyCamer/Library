@@ -18,6 +18,21 @@ font-size: 95px;
 text-align: center;
 }
 
+#add {
+  position: absolute;
+  right: 215px;
+  top: 195px;
+}
+
+#addButton {
+    padding: 12px 17px;
+    font-size: 20px;
+    background-color: white;
+    align-content: center;
+    border-radius: 5px;
+    border-color: white;
+}
+
 .books {
     margin: auto;
     border-radius: 5px;
@@ -29,7 +44,8 @@ text-align: center;
 
 #bookshelf {
     padding: 18px 20px;
-    overflow:scroll; height:500px;
+    overflow-y: scroll; 
+    height:450px;
 }
 
 table{ 
@@ -41,7 +57,7 @@ th {
     font-size: 20px;
     padding: 0 0 12px 0;
     text-align: left;
-        border: 0;
+    border: 0;
     outline: 0;
     background: transparent;
     border-bottom: 1px solid black;
@@ -52,11 +68,15 @@ th.pages, th.progress {
 }
 
 th.title, {
-    width: 40%;
+    width: 35%;
 }
 
 th.author {
-    width: 30%;
+    width: 25%;
+}
+
+th.edit, th.remove {
+    width: 5%
 }
 
 #title, #author, #pagesRead, #pagesTotal {

@@ -6,10 +6,8 @@ let pagesTotal = document.getElementById("pagesTotal").value;
 let progress = document.getElementById("progress").value;
 let tableRow = document.querySelector('#listOfBooks');
 let bookForm = document.querySelector('#form-popup');
+let removeBookBtn = document.getElementById('editButton');
 let btnAddBook = document.getElementById('#btnAddBook');
-    if (btnAddBook){
-        btnAddBook.addEventListener('click', addBookTolibrary, false);
-    }
 
 const myLibrary =[];
 
@@ -33,6 +31,8 @@ function addBookTolibrary() {
 
     myLibrary.push(new Book(title, author, pagesRead, pagesTotal, progress));
     render();
+    closeForm();
+    resetForm();
 }
 
 
@@ -48,9 +48,9 @@ function render () {
                         <td>${myLibrary[i].author}</td>
                         <td>${myLibrary[i].pagesRead}/${myLibrary[i].pagesTotal}</td>
                         <td>${myLibrary[i].progress}</td>
-                        <td><button id="editButton" onclick="editBook()">
+                        <td><button id="editButton" onclick="clickSubmit()">
                         <span class="material-icons">create</span></td>
-                        <td><button id="removeButton" onclick="removeBook()">
+                        <td><button id="removeButton" onclick="myFunction(this)">
                         <span class="material-icons">delete</span></button></td>`;
 
                         list.appendChild(row);
@@ -58,17 +58,64 @@ function render () {
 
 }
 
+function clickSubmit(i){
+    if(myLibrary.includes(document.getElementById("title"))){
+        getDataFromArray();
+    }
+    else{
+        addBookTolibrary();
+    }
 
+}
 
 function openForm() {
     document.getElementById("popupForm").style.display="block";
 }
 
 function closeForm() {
-        document.getElementById("popupForm").style.display="none";
+    document.getElementById("popupForm").style.display="none";
 }
-console.log(myLibrary);
 
+function resetForm(){
+    document.getElementById("form").reset();
+
+}
+
+function updateForm(i){
+    openForm();
+
+    myLibrary[i].title = title; 
+    myLibrary[i].author = author; 
+    myLibrary[i].pagesRead = pagesRead; 
+    myLibrary[i].pagesTotal = pagesTotal; 
+    myLibrary[i].progress = progress;
+    alert(i);
+}
+
+function getDataFromArray(x){
+    let i = (x.parentNode.parentNode.rowIndex - 1);
+
+    document.getElementById("title").value = myLibrary[i].title; 
+    document.getElementById("author").value = myLibrary[i].author; 
+    document.getElementById("pagesRead").value = myLibrary[i].pagesRead; 
+    document.getElementById("pagesTotal").value = myLibrary[i].pagesTotal; 
+    document.getElementById("progress").value = myLibrary[i].progress;
+    
+    updateForm(i);
+    alert(i)
+}
+
+function myFunction(x) {
+    let i = (x.parentNode.parentNode.rowIndex);
+    removeBook(i);
+    document.getElementById("listOfBooks").deleteRow(i);
+    alert(i);
+}
+
+function removeBook(index){
+       myLibrary.splice(index, 1);
+       console.log(myLibrary);
+    }
 
 
 

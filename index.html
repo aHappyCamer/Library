@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" type="text/css" href="style.css">
 
         
@@ -16,7 +17,7 @@
     <div class="books">
         <div id="bookshelf">
             <table id="listOfBooks">
-                <tr>
+                <thead>
                     <th class="title">Title</th>
                     <th class="author">Author</th>
                     <th class="pages">Pages</th>
@@ -24,39 +25,74 @@
                     <th class="edit"></th>
                     <th class="remove"></th>
 <!--                     <th class="rate">Rating</th> -->
-                </tr>
+                </thead>
+                <tbody id="showList">
+                  
+                </tbody>
             </table>
         </div>
     </div>
-
-    </div>
     <div class="login-popup">
       <div class="form-popup" id="popupForm">
-        <form class="form-container">
+        <form id="form">
           <h2>Details</h2>
           <label for="title">
-          <strong>Title</strong>
-          </label>
-          <input type="text" id="title" placeholder="Book Title" name="title" required><br/>
+              <strong>Title</strong>
+              </label>
+              <input type="text" id="title" placeholder="Book Title" name="title" required><br/>
           <label for="author">
-          <strong>Author</strong>
-          </label>
-          <input type="text" id="author" placeholder="Author's name" name="author" required><br/>
+              <strong>Author</strong>
+              </label>
+              <input type="text" id="author" placeholder="Author's name" name="author" required><br/>
+              <label for="pages">
           <strong>Pages</strong>
-          </label>
-          <input type="number" id="pagesRead" placeholder="Read" name="pagesRead" min="0" max="9999">/<input type="number" id="pagesTotal" placeholder="Total" name="pagesTotal" min="0" max="9999"required><br/>
+              </label>
+              <input type="number" id="pagesRead" placeholder="Read" name="pagesRead" min="0" max="9999">/<input type="number" id="pagesTotal" placeholder="Total" name="pagesTotal" min="0" max="9999"required><br/>
+              <label for="progress">
           <strong>Progress</strong>
-          </label>
-          <select id="progress" placeholder="Select the progress" name="progress" required>
-                            <option value="Empty"></option>
-                            <option value="Reading">Reading</option>
-                            <option value="Completed">Completed</option>
-                            <option value="On hold">On hold</option>
-                            <option value="Dropped">Dropped</option>
-                            <option value="Plan to read">Plan to read</option>
-                        </select><br/>
-                        
-          <button type="button" id="btnAddBook" onclick="addBookTolibrary()">Submit</button>
+              </label>
+              <select id="progress" placeholder="Select the progress" name="progress" required>
+                    <option value="Empty"></option>
+                    <option value="Reading">Reading</option>
+                    <option value="Completed">Completed</option>
+                    <option value="On hold">On hold</option>
+                    <option value="Dropped">Dropped</option>
+                    <option value="Plan to read">Plan to read</option>
+              </select><br/>        
+          <button type="button" id="btnAddBook" onclick="clickSubmit()">Submit</button>
+          <button type="button" class="cancel" onclick="closeForm()">Close</button>
+        </form>
+      </div>
+    </div>
+
+        <div class="login-popup-edit">
+      <div class="form-popup" id="popupForm-edit">
+        <form id="formEdit">
+          <h2>Details</h2>
+          <label for="title">
+              <strong>Title</strong>
+              </label>
+              <input type="text" id="titleEdit" placeholder="Book Title" name="title" required><br/>
+          <label for="author">
+              <strong>Author</strong>
+              </label>
+              <input type="text" id="authorEdit" placeholder="Author's name" name="author" required><br/>
+              <label for="pages">
+          <strong>Pages</strong>
+              </label>
+              <input type="number" id="pagesReadEdit" placeholder="Read" name="pagesRead" min="0" max="9999">/<input type="number" id="pagesTotalEdit" placeholder="Total" name="pagesTotal" min="0" max="9999"required><br/>
+              <label for="progressEdit">
+          <strong>Progress</strong>
+              </label>
+              <select id="progressEdit" placeholder="Select the progress" name="progress" required>
+                    <option value="Empty"></option>
+                    <option value="Reading">Reading</option>
+                    <option value="Completed">Completed</option>
+                    <option value="On hold">On hold</option>
+                    <option value="Dropped">Dropped</option>
+                    <option value="Plan to read">Plan to read</option>
+              </select><br/>        
+          <button type="button" id="btnEditBook" onclick="updateForm()">Submit</button>
           <button type="button" class="cancel" onclick="closeForm()">Close</button>
         </form>
       </div>

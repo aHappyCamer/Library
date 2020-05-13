@@ -1,11 +1,29 @@
-let removeBookBtn = document.getElementById('editButton');
-let btnAddBook = document.getElementById('#btnAddBook');
-// document.querySelector('#btnEditBook').addEventListener('click', () => {
-//     updateForm()
-// });
-let abc;
+let title = document.getElementById("title").value;
+let author = document.getElementById("author").value;
+let pagesRead = document.getElementById("pagesRead").value;
+let pagesTotal = document.getElementById("pagesTotal").value;
+let progress = document.getElementById("progress").value;
+
+let titleEdit = document.getElementById("titleEdit").value;
+let authorEdit = document.getElementById("authorEdit").value; 
+let pagesReadEdit = document.getElementById("pagesReadEdit").value;
+let pagesTotalEdit = document.getElementById("pagesTotalEdit").value; 
+let progressEdit = document.getElementById("progressEdit").value;
+
+const removeBookBtn = document.getElementById('editButton');
+const btnAddBook = document.getElementById('#btnAddBook');
 const table = document.getElementById("listOfBooks");
 const list = document.querySelector('#listOfBooks');
+const deleteBookBtn = document.querySelector('#btnCancel');
+if (deleteBookBtn){    
+        deleteBookBtn.addEventListener('click', closeForm, false);  
+    }
+const editBtn = document.querySelector('#editButton');
+if (editBtn){
+    editBtn.addEventListener('click', openFormEdit, false);
+}
+
+let abc;
 
 const myLibrary =[];
 
@@ -22,40 +40,37 @@ function Book (title, author, pagesRead, pagesTotal, progress){
 
 function addBookTolibrary() {
 
-    let title = document.getElementById("title").value;
-    let author = document.getElementById("author").value;
-    let pagesRead = document.getElementById("pagesRead").value;
-    let pagesTotal = document.getElementById("pagesTotal").value;
-    let progress = document.getElementById("progress").value;
+    title = document.getElementById("title").value;
+    author = document.getElementById("author").value;
+    pagesRead = document.getElementById("pagesRead").value;
+    pagesTotal = document.getElementById("pagesTotal").value;
+    progress = document.getElementById("progress").value;
 
     myLibrary.push(new Book(title, author, pagesRead, pagesTotal, progress));
     clearTable(table);
     render();
-    closeForm();
     resetForm();
+    closeForm();
 }
 
 function clearTable(table) {
   // var rows = table.rows;
-  let i = 0;
-for(i; i < table.rows.length; i++){
-  document.getElementById("listOfBooks").deleteRow(i);
-                    list.innerHTML = `<th class="title">Title</th>
-                    <th class="author">Author</th>
-                    <th class="pages">Pages</th>
-                    <th class="progress">Progress</th>
-                    <th class="edit"></th>
-                    <th class="remove"></th>`;
+  // let i = 0;
+    for(i = 0; i < table.rows.length; i++){
+      document.getElementById("listOfBooks").deleteRow(i);
+      list.innerHTML = `<th class="title">Title</th>
+                        <th class="author">Author</th>
+                        <th class="pages">Pages</th>
+                        <th class="progress">Progress</th>
+                        <th class="edit"></th>
+                        <th class="remove"></th>`;
+    }
 }
-}
-
 
 function render () {
-    // const row = document.createElement('tr');
-    
     let json = JSON.stringify(myLibrary);
-    let i = 0;
-    for(i; i < myLibrary.length; i++){
+    // let i = 0;
+    for(i= 0; i < myLibrary.length; i++){
         list.innerHTML += `<tr>
                         <td>${myLibrary[i].title}</td>
                         <td>${myLibrary[i].author}</td>
@@ -66,13 +81,10 @@ function render () {
                         <td><button id="removeButton" onclick="myFunction(this)">
                         <span class="material-icons">delete</span></button></td>
                         </tr>`;
-
     }
-    
-
 }
 
-function clickSubmit(x){
+function clickSubmit(){
         addBookTolibrary();
 }
 
@@ -86,8 +98,15 @@ function closeForm() {
 }
 
 function openFormEdit(x){
+    abc = x.parentNode.parentNode.rowIndex-1;
     document.getElementById("popupForm-edit").style.display="block";
-    abc = x.parentNode.parentNode.rowIndex -1;
+
+    document.forms['formEdit']['titleEdit'].value = myLibrary[abc].title;
+    document.forms['formEdit']['authorEdit'].value = myLibrary[abc].author;
+    document.forms['formEdit']['pagesReadEdit'].value = myLibrary[abc].pagesRead;
+    document.forms['formEdit']['pagesTotalEdit'].value = myLibrary[abc].pagesTotal;
+    document.forms['formEdit']['progressEdit'].value = myLibrary[abc].progress;
+    
 }
 
 function resetForm(){
@@ -101,13 +120,13 @@ function updateForm(){
     submitEdits(abc);
 }
 
-function submitEdits(i){
-let titleEdit = document.getElementById("titleEdit").value;
-let authorEdit = document.getElementById("authorEdit").value; 
-let pagesReadEdit = document.getElementById("pagesReadEdit").value;
-let pagesTotalEdit = document.getElementById("pagesTotalEdit").value; 
-let progressEdit = document.getElementById("progressEdit").value;
 
+function submitEdits(i){
+    titleEdit = document.getElementById("titleEdit").value;
+    authorEdit = document.getElementById("authorEdit").value;
+    pagesReadEdit = document.getElementById("pagesReadEdit").value;
+    pagesTotalEdit = document.getElementById("pagesTotalEdit").value; 
+    progressEdit = document.getElementById("progressEdit").value;
 
     myLibrary[i]["title"] = titleEdit;
     myLibrary[i]["author"] = authorEdit;
@@ -115,27 +134,21 @@ let progressEdit = document.getElementById("progressEdit").value;
     myLibrary[i]["pagesTotal"] = pagesTotalEdit;
     myLibrary[i]["progress"] = progressEdit;
 
-
-    console.log(myLibrary);
     closeForm();
-    resetForm();
     clearTable(table);
     render();
+    resetForm();
 
 }
 
 function myFunction(x) {
     let tableIndex = x.parentNode.parentNode.rowIndex;
     let arrayIndex = x.parentNode.parentNode.rowIndex - 1;
-    removeBook(arrayIndex);
+    removeBookFromArray(arrayIndex);
     document.getElementById("listOfBooks").deleteRow(tableIndex);
 }
 
-function removeBook(index){
+function removeBookFromArray(index){
        myLibrary.splice(index, 1);
-       console.log(myLibrary);
     }
-
-
-
 

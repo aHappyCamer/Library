@@ -179,7 +179,7 @@ function validateForm() {
   let bookAuthor = trim(authorInput.value);
   let bookPagesRead = trim(pagesReadInput.value);
   let bookPagesTotal = trim(pagesTotalInput.value);
-  let bookProgress = trim(progressInput.value);
+  let bookProgress = progressInput.value;
 
   if (bookTitle && bookAuthor && bookPagesRead && bookPagesTotal && bookProgress) {
     titleInput.value = bookTitle;
@@ -187,7 +187,10 @@ function validateForm() {
     pagesReadInput.value = bookPagesRead;
     pagesTotalInput.value = bookPagesTotal;
     progressInput.value = bookProgress;
-    return true;
+    
+    if (progressInput.value != "Empty"){
+        return true;
+    }
 
 } else{
     return false;
@@ -205,16 +208,17 @@ function validateFormEdits() {
   let bookAuthorEdit = trim(authorEditInput.value);
   let bookPagesReadEdit = trim(pagesReadEditInput.value);
   let bookPagesTotalEdit = trim(pagesTotalEditInput.value);
-  let bookProgressEdit = trim(progressEditInput.value);
+  let bookProgressEdit = progressEditInput.value;
 
-  if (bookTitleEdit && bookAuthorEdit && bookPagesReadEdit && bookPagesTotalEdit && bookProgressEdit) {
+  if (bookTitleEdit && bookAuthorEdit && bookPagesReadEdit && bookPagesTotalEdit) {
     titleEditInput.value = bookTitleEdit;
     authorEditInput.value = bookAuthorEdit;
     pagesReadEditInput.value = bookPagesReadEdit;
     pagesTotalEditInput.value = bookPagesTotalEdit;
-    progressEditInput.value = bookProgressEdit;
 
-    return true;
+    if (progressEditInput.value != "Empty"){
+        return true;
+    }
 
 } else{
     return false;

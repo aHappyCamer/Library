@@ -60,31 +60,31 @@
                     <option value="Plan to read">Plan to read</option>
               </select><br/>        
           <button type="button" id="btnAddBook" onclick="clickSubmit()">Submit</button>
-          <button type="button" class="cancel" onclick="closeForm()">Close</button>
+          <button type="button" id="btnCancel" class="cancel" onclick="closeForm()">Close</button>
         </form>
       </div>
     </div>
 
         <div class="login-popup-edit">
       <div class="form-popup" id="popupForm-edit">
-        <form id="formEdit">
+        <form name="formEdit" id="formEdit">
           <h2>Details</h2>
           <label for="title">
               <strong>Title</strong>
               </label>
-              <input type="text" id="titleEdit" placeholder="Book Title" name="title" required><br/>
+              <input type="text" id="titleEdit" placeholder="Book Title" name="titleEdit" required><br/>
           <label for="author">
               <strong>Author</strong>
               </label>
-              <input type="text" id="authorEdit" placeholder="Author's name" name="author" required><br/>
+              <input type="text" id="authorEdit" placeholder="Author's name" name="authorEditEdit" required><br/>
               <label for="pages">
           <strong>Pages</strong>
               </label>
-              <input type="number" id="pagesReadEdit" placeholder="Read" name="pagesRead" min="0" max="9999">/<input type="number" id="pagesTotalEdit" placeholder="Total" name="pagesTotal" min="0" max="9999"required><br/>
+              <input type="number" id="pagesReadEdit" placeholder="Read" name="pagesReadEdit" min="0" max="9999">/<input type="number" id="pagesTotalEdit" placeholder="Total" name="pagesTotalEdit" min="0" max="9999"required><br/>
               <label for="progressEdit">
           <strong>Progress</strong>
               </label>
-              <select id="progressEdit" placeholder="Select the progress" name="progress" required>
+              <select id="progressEdit" placeholder="Select the progress" name="progressEdit" required>
                     <option value="Empty"></option>
                     <option value="Reading">Reading</option>
                     <option value="Completed">Completed</option>
@@ -93,7 +93,7 @@
                     <option value="Plan to read">Plan to read</option>
               </select><br/>        
           <button type="button" id="btnEditBook" onclick="updateForm()">Submit</button>
-          <button type="button" class="cancel" onclick="closeForm()">Close</button>
+          <button type="button" id="btnCancel" class="cancel" onclick="closeForm()">Close</button>
         </form>
       </div>
     </div>

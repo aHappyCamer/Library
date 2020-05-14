@@ -13,15 +13,22 @@ body {
 }
 
 .rectangle, h1 {
-font-family: 'Amatic SC', cursive;
-font-size: 95px;
-text-align: center;
+    font-family: 'Amatic SC', cursive;
+    font-size: 95px;
+    text-align: center;
 }
 
 #add {
-  position: absolute;
-  right: 215px;
-  top: 195px;
+    position: absolute;
+    right: 215px;
+    top: 195px;
+}
+
+#editButton, #removeButton {
+    background-color: white;
+    align-content: center;
+    border-radius: 5px;
+    border-color: white;
 }
 
 #addButton {
@@ -93,28 +100,51 @@ td {
     height: 40px;
 }
 
-      /* Position the Popup form */
-      .login-popup {
-      position: relative;
-      text-align: center;
-      width: 100%;
-      }
-      /* Hide the Popup form */
-      .form-popup {
-      display: none;
-      position: fixed;
-      left: 45%;
-      top:5%;
-      transform: translate(-45%,5%);
-      border: 2px solid #666;
-      z-index: 9;
-      }
-      /* Styles for the form container */
-      .form-container {
-      max-width: 300px;
-      padding: 20px;
-      background-color: #fff;
-      }
+/* Position the Popup form */
+.login-popup {
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+/* Hide the Popup form */
+.form-popup {
+    display: none;
+    position: fixed;
+    left: 45%;
+    top:5%;
+    transform: translate(-45%,5%);
+    border: 2px solid #666;
+    z-index: 9;
+}
+/* Styles for the form container */
+  #form {
+    max-width: 300px;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.login-popup-edit {
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+/* Hide the Popup form */
+.form-popup-edit {
+    display: none;
+    position: fixed;
+    left: 45%;
+    top:5%;
+    transform: translate(-45%,5%);
+    border: 2px solid #666;
+    z-index: 9;
+}
+/* Styles for the form container */
+  #formEdit {
+    max-width: 300px;
+    padding: 20px;
+    background-color: #fff;
+}
+
 
 
 

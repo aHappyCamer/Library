@@ -84,7 +84,12 @@ function render () {
 
 function clickSubmit(){
     if (validateForm()){
+        if (checkPageRatio()){
         addBookTolibrary();
+        } 
+        else{
+            alert("Pages read cannot be greater than the total number of pages");
+        }
     }
     else{
         alert("All fields must be filled in");
@@ -119,8 +124,17 @@ function resetForm(){
 }
 
 function updateForm(){
-
-    submitEdits(abc);
+    if (validateFormEdits()){
+        if (checkPageRatio()){
+                    submitEdits(abc);
+        } 
+        else{
+            alert("Pages read cannot be greater than the total number of pages");
+        }
+    } else{
+        alert("All fields must be filled in");
+    }
+    
 }
 
 
@@ -167,11 +181,39 @@ function validateForm() {
   let bookPagesTotal = trim(pagesTotalInput.value);
   let bookProgress = trim(progressInput.value);
 
-  if (bookTitle && bookAuthor && bookPagesRead && bookPagesTotal) {
+  if (bookTitle && bookAuthor && bookPagesRead && bookPagesTotal && bookProgress) {
     titleInput.value = bookTitle;
     authorInput.value = bookAuthor;
     pagesReadInput.value = bookPagesRead;
     pagesTotalInput.value = bookPagesTotal;
+    progressInput.value = bookProgress;
+    return true;
+
+} else{
+    return false;
+  }
+}
+
+let titleEditInput = document.forms["formEdit"]["titleEdit"];
+let authorEditInput = document.forms["formEdit"]["authorEdit"];
+let pagesReadEditInput = document.forms["formEdit"]["pagesReadEdit"];
+let pagesTotalEditInput = document.forms["formEdit"]["pagesTotalEdit"];
+let progressEditInput = document.forms["formEdit"]["progressEdit"];
+
+function validateFormEdits() {
+  let bookTitleEdit = trim(titleEditInput.value);
+  let bookAuthorEdit = trim(authorEditInput.value);
+  let bookPagesReadEdit = trim(pagesReadEditInput.value);
+  let bookPagesTotalEdit = trim(pagesTotalEditInput.value);
+  let bookProgressEdit = trim(progressEditInput.value);
+
+  if (bookTitleEdit && bookAuthorEdit && bookPagesReadEdit && bookPagesTotalEdit && bookProgressEdit) {
+    titleEditInput.value = bookTitleEdit;
+    authorEditInput.value = bookAuthorEdit;
+    pagesReadEditInput.value = bookPagesReadEdit;
+    pagesTotalEditInput.value = bookPagesTotalEdit;
+    progressEditInput.value = bookProgressEdit;
+
     return true;
 
 } else{
@@ -181,5 +223,12 @@ function validateForm() {
 
 function trim(value) {
     return value.replace(/^\s+|\s+$/g,"");
+}
+
+function checkPageRatio(){
+    if ((pagesReadInput.value || pagesReadEditInput.value) > (pagesTotalInput.value || pagesTotalEditInput.value)){
+        return false;
+    }
+    return true;
 }
 

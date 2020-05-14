@@ -55,7 +55,6 @@ function addBookTolibrary() {
 
 function clearTable(table) {
   // var rows = table.rows;
-  // let i = 0;
     for(i = 0; i < table.rows.length; i++){
       document.getElementById("listOfBooks").deleteRow(i);
       list.innerHTML = `<th class="title">Title</th>
@@ -69,7 +68,6 @@ function clearTable(table) {
 
 function render () {
     let json = JSON.stringify(myLibrary);
-    // let i = 0;
     for(i= 0; i < myLibrary.length; i++){
         list.innerHTML += `<tr>
                         <td>${myLibrary[i].title}</td>
@@ -85,7 +83,12 @@ function render () {
 }
 
 function clickSubmit(){
+    if (validateForm()){
         addBookTolibrary();
+    }
+    else{
+        alert("All fields must be filled in");
+    }
 }
 
 function openForm() {
@@ -138,7 +141,6 @@ function submitEdits(i){
     clearTable(table);
     render();
     resetForm();
-
 }
 
 function myFunction(x) {
@@ -151,4 +153,33 @@ function myFunction(x) {
 function removeBookFromArray(index){
        myLibrary.splice(index, 1);
     }
+
+let titleInput = document.forms["form"]["title"];
+let authorInput = document.forms["form"]["author"];
+let pagesReadInput = document.forms["form"]["pagesRead"];
+let pagesTotalInput = document.forms["form"]["pagesTotal"];
+let progressInput = document.forms["form"]["progress"];
+
+function validateForm() {
+  let bookTitle = trim(titleInput.value);
+  let bookAuthor = trim(authorInput.value);
+  let bookPagesRead = trim(pagesReadInput.value);
+  let bookPagesTotal = trim(pagesTotalInput.value);
+  let bookProgress = trim(progressInput.value);
+
+  if (bookTitle && bookAuthor && bookPagesRead && bookPagesTotal) {
+    titleInput.value = bookTitle;
+    authorInput.value = bookAuthor;
+    pagesReadInput.value = bookPagesRead;
+    pagesTotalInput.value = bookPagesTotal;
+    return true;
+
+} else{
+    return false;
+  }
+}
+
+function trim(value) {
+    return value.replace(/^\s+|\s+$/g,"");
+}
 
